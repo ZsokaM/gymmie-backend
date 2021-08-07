@@ -153,6 +153,9 @@ type SportClass {
   description: String
   freeSpots: Int
   status: String
+  startTime: String
+  teacher: String
+  duration: String
 }
 
 input SportClassWhereInput {
@@ -224,6 +227,60 @@ input SportClassWhereInput {
   status_not_ends_with_i: String
   status_in: [String]
   status_not_in: [String]
+  startTime: String
+  startTime_not: String
+  startTime_contains: String
+  startTime_not_contains: String
+  startTime_starts_with: String
+  startTime_not_starts_with: String
+  startTime_ends_with: String
+  startTime_not_ends_with: String
+  startTime_i: String
+  startTime_not_i: String
+  startTime_contains_i: String
+  startTime_not_contains_i: String
+  startTime_starts_with_i: String
+  startTime_not_starts_with_i: String
+  startTime_ends_with_i: String
+  startTime_not_ends_with_i: String
+  startTime_in: [String]
+  startTime_not_in: [String]
+  teacher: String
+  teacher_not: String
+  teacher_contains: String
+  teacher_not_contains: String
+  teacher_starts_with: String
+  teacher_not_starts_with: String
+  teacher_ends_with: String
+  teacher_not_ends_with: String
+  teacher_i: String
+  teacher_not_i: String
+  teacher_contains_i: String
+  teacher_not_contains_i: String
+  teacher_starts_with_i: String
+  teacher_not_starts_with_i: String
+  teacher_ends_with_i: String
+  teacher_not_ends_with_i: String
+  teacher_in: [String]
+  teacher_not_in: [String]
+  duration: String
+  duration_not: String
+  duration_contains: String
+  duration_not_contains: String
+  duration_starts_with: String
+  duration_not_starts_with: String
+  duration_ends_with: String
+  duration_not_ends_with: String
+  duration_i: String
+  duration_not_i: String
+  duration_contains_i: String
+  duration_not_contains_i: String
+  duration_starts_with_i: String
+  duration_not_starts_with_i: String
+  duration_ends_with_i: String
+  duration_not_ends_with_i: String
+  duration_in: [String]
+  duration_not_in: [String]
 }
 
 input SportClassWhereUniqueInput {
@@ -241,6 +298,12 @@ enum SortSportClassesBy {
   freeSpots_DESC
   status_ASC
   status_DESC
+  startTime_ASC
+  startTime_DESC
+  teacher_ASC
+  teacher_DESC
+  duration_ASC
+  duration_DESC
 }
 
 input SportClassUpdateInput {
@@ -248,6 +311,9 @@ input SportClassUpdateInput {
   description: String
   freeSpots: Int
   status: String
+  startTime: String
+  teacher: String
+  duration: String
 }
 
 input SportClassesUpdateInput {
@@ -260,6 +326,9 @@ input SportClassCreateInput {
   description: String
   freeSpots: Int
   status: String
+  startTime: String
+  teacher: String
+  duration: String
 }
 
 input SportClassesCreateInput {

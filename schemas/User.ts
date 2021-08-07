@@ -1,6 +1,6 @@
-import { list } from '@keystone-next/keystone/schema';
-import { text, password, relationship } from '@keystone-next/fields';
-import { Booking } from './Booking';
+import { list } from '@keystone-next/keystone/schema'
+import { text, password, relationship } from '@keystone-next/fields'
+import { Booking } from './Booking'
 
 export const User = list({
   // access:
@@ -11,4 +11,4 @@ export const User = list({
     password: password(),
     // roles, bookings to be added
   },
-});
+})

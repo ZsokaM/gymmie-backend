@@ -28,6 +28,11 @@
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/sport-classes.js"
+    ],
+    "/sport-classes/[id]": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/sport-classes/[id].js"
     ]
   },
   "ampFirstPages": []

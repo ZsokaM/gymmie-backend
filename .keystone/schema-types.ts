@@ -225,6 +225,60 @@ export type SportClassWhereInput = {
   readonly status_not_ends_with_i?: Scalars['String'] | null;
   readonly status_in?: ReadonlyArray<Scalars['String'] | null> | null;
   readonly status_not_in?: ReadonlyArray<Scalars['String'] | null> | null;
+  readonly startTime?: Scalars['String'] | null;
+  readonly startTime_not?: Scalars['String'] | null;
+  readonly startTime_contains?: Scalars['String'] | null;
+  readonly startTime_not_contains?: Scalars['String'] | null;
+  readonly startTime_starts_with?: Scalars['String'] | null;
+  readonly startTime_not_starts_with?: Scalars['String'] | null;
+  readonly startTime_ends_with?: Scalars['String'] | null;
+  readonly startTime_not_ends_with?: Scalars['String'] | null;
+  readonly startTime_i?: Scalars['String'] | null;
+  readonly startTime_not_i?: Scalars['String'] | null;
+  readonly startTime_contains_i?: Scalars['String'] | null;
+  readonly startTime_not_contains_i?: Scalars['String'] | null;
+  readonly startTime_starts_with_i?: Scalars['String'] | null;
+  readonly startTime_not_starts_with_i?: Scalars['String'] | null;
+  readonly startTime_ends_with_i?: Scalars['String'] | null;
+  readonly startTime_not_ends_with_i?: Scalars['String'] | null;
+  readonly startTime_in?: ReadonlyArray<Scalars['String'] | null> | null;
+  readonly startTime_not_in?: ReadonlyArray<Scalars['String'] | null> | null;
+  readonly teacher?: Scalars['String'] | null;
+  readonly teacher_not?: Scalars['String'] | null;
+  readonly teacher_contains?: Scalars['String'] | null;
+  readonly teacher_not_contains?: Scalars['String'] | null;
+  readonly teacher_starts_with?: Scalars['String'] | null;
+  readonly teacher_not_starts_with?: Scalars['String'] | null;
+  readonly teacher_ends_with?: Scalars['String'] | null;
+  readonly teacher_not_ends_with?: Scalars['String'] | null;
+  readonly teacher_i?: Scalars['String'] | null;
+  readonly teacher_not_i?: Scalars['String'] | null;
+  readonly teacher_contains_i?: Scalars['String'] | null;
+  readonly teacher_not_contains_i?: Scalars['String'] | null;
+  readonly teacher_starts_with_i?: Scalars['String'] | null;
+  readonly teacher_not_starts_with_i?: Scalars['String'] | null;
+  readonly teacher_ends_with_i?: Scalars['String'] | null;
+  readonly teacher_not_ends_with_i?: Scalars['String'] | null;
+  readonly teacher_in?: ReadonlyArray<Scalars['String'] | null> | null;
+  readonly teacher_not_in?: ReadonlyArray<Scalars['String'] | null> | null;
+  readonly duration?: Scalars['String'] | null;
+  readonly duration_not?: Scalars['String'] | null;
+  readonly duration_contains?: Scalars['String'] | null;
+  readonly duration_not_contains?: Scalars['String'] | null;
+  readonly duration_starts_with?: Scalars['String'] | null;
+  readonly duration_not_starts_with?: Scalars['String'] | null;
+  readonly duration_ends_with?: Scalars['String'] | null;
+  readonly duration_not_ends_with?: Scalars['String'] | null;
+  readonly duration_i?: Scalars['String'] | null;
+  readonly duration_not_i?: Scalars['String'] | null;
+  readonly duration_contains_i?: Scalars['String'] | null;
+  readonly duration_not_contains_i?: Scalars['String'] | null;
+  readonly duration_starts_with_i?: Scalars['String'] | null;
+  readonly duration_not_starts_with_i?: Scalars['String'] | null;
+  readonly duration_ends_with_i?: Scalars['String'] | null;
+  readonly duration_not_ends_with_i?: Scalars['String'] | null;
+  readonly duration_in?: ReadonlyArray<Scalars['String'] | null> | null;
+  readonly duration_not_in?: ReadonlyArray<Scalars['String'] | null> | null;
 };
 
 export type SportClassWhereUniqueInput = {
@@ -241,13 +295,22 @@ export type SortSportClassesBy =
   | 'freeSpots_ASC'
   | 'freeSpots_DESC'
   | 'status_ASC'
-  | 'status_DESC';
+  | 'status_DESC'
+  | 'startTime_ASC'
+  | 'startTime_DESC'
+  | 'teacher_ASC'
+  | 'teacher_DESC'
+  | 'duration_ASC'
+  | 'duration_DESC';
 
 export type SportClassUpdateInput = {
   readonly name?: Scalars['String'] | null;
   readonly description?: Scalars['String'] | null;
   readonly freeSpots?: Scalars['Int'] | null;
   readonly status?: Scalars['String'] | null;
+  readonly startTime?: Scalars['String'] | null;
+  readonly teacher?: Scalars['String'] | null;
+  readonly duration?: Scalars['String'] | null;
 };
 
 export type SportClassesUpdateInput = {
@@ -260,6 +323,9 @@ export type SportClassCreateInput = {
   readonly description?: Scalars['String'] | null;
   readonly freeSpots?: Scalars['Int'] | null;
   readonly status?: Scalars['String'] | null;
+  readonly startTime?: Scalars['String'] | null;
+  readonly teacher?: Scalars['String'] | null;
+  readonly duration?: Scalars['String'] | null;
 };
 
 export type SportClassesCreateInput = {
@@ -351,13 +417,24 @@ export type UserListFn = (
 
 export type SportClassListTypeInfo = {
   key: 'SportClass';
-  fields: 'id' | 'name' | 'description' | 'freeSpots' | 'status';
+  fields:
+    | 'id'
+    | 'name'
+    | 'description'
+    | 'freeSpots'
+    | 'status'
+    | 'startTime'
+    | 'teacher'
+    | 'duration';
   backing: {
     readonly id: string;
     readonly name?: string | null;
     readonly description?: string | null;
     readonly freeSpots?: number | null;
     readonly status?: string | null;
+    readonly startTime?: string | null;
+    readonly teacher?: string | null;
+    readonly duration?: string | null;
   };
   inputs: {
     where: SportClassWhereInput;
