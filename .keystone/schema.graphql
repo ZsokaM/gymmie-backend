@@ -1,9 +1,17 @@
+input SportClassRelateToOneInput {
+  create: SportClassCreateInput
+  connect: SportClassWhereUniqueInput
+  disconnect: SportClassWhereUniqueInput
+  disconnectAll: Boolean
+}
+
 """ A keystone list """
 type User {
   id: ID!
   name: String
   email: String
   password_is_set: Boolean
+  classes: SportClass
   passwordResetToken_is_set: Boolean
   passwordResetIssuedAt: String
   passwordResetRedeemedAt: String
@@ -56,6 +64,8 @@ input UserWhereInput {
   email_in: [String]
   email_not_in: [String]
   password_is_set: Boolean
+  classes: SportClassWhereInput
+  classes_is_null: Boolean
   passwordResetToken_is_set: Boolean
   passwordResetIssuedAt: String
   passwordResetIssuedAt_not: String
@@ -103,6 +113,8 @@ enum SortUsersBy {
   name_DESC
   email_ASC
   email_DESC
+  classes_ASC
+  classes_DESC
   passwordResetIssuedAt_ASC
   passwordResetIssuedAt_DESC
   passwordResetRedeemedAt_ASC
@@ -117,6 +129,7 @@ input UserUpdateInput {
   name: String
   email: String
   password: String
+  classes: SportClassRelateToOneInput
   passwordResetToken: String
   passwordResetIssuedAt: String
   passwordResetRedeemedAt: String
@@ -134,6 +147,7 @@ input UserCreateInput {
   name: String
   email: String
   password: String
+  classes: SportClassRelateToOneInput
   passwordResetToken: String
   passwordResetIssuedAt: String
   passwordResetRedeemedAt: String
@@ -146,16 +160,26 @@ input UsersCreateInput {
   data: UserCreateInput
 }
 
+input UserRelateToManyInput {
+  create: [UserCreateInput]
+  connect: [UserWhereUniqueInput]
+  disconnect: [UserWhereUniqueInput]
+  disconnectAll: Boolean
+}
+
 """ A keystone list """
 type SportClass {
   id: ID!
   name: String
-  description: String
   freeSpots: Int
   status: String
+  week: Int
+  day: String
   startTime: String
   teacher: String
   duration: String
+  users(where: UserWhereInput, search: String, sortBy: [SortUsersBy!], orderBy: String, first: Int, skip: Int): [User!]!
+  _usersMeta(where: UserWhereInput, search: String, sortBy: [SortUsersBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
 }
 
 input SportClassWhereInput {
@@ -183,24 +207,6 @@ input SportClassWhereInput {
   name_not_ends_with_i: String
   name_in: [String]
   name_not_in: [String]
-  description: String
-  description_not: String
-  description_contains: String
-  description_not_contains: String
-  description_starts_with: String
-  description_not_starts_with: String
-  description_ends_with: String
-  description_not_ends_with: String
-  description_i: String
-  description_not_i: String
-  description_contains_i: String
-  description_not_contains_i: String
-  description_starts_with_i: String
-  description_not_starts_with_i: String
-  description_ends_with_i: String
-  description_not_ends_with_i: String
-  description_in: [String]
-  description_not_in: [String]
   freeSpots: Int
   freeSpots_not: Int
   freeSpots_lt: Int
@@ -227,6 +233,32 @@ input SportClassWhereInput {
   status_not_ends_with_i: String
   status_in: [String]
   status_not_in: [String]
+  week: Int
+  week_not: Int
+  week_lt: Int
+  week_lte: Int
+  week_gt: Int
+  week_gte: Int
+  week_in: [Int]
+  week_not_in: [Int]
+  day: String
+  day_not: String
+  day_contains: String
+  day_not_contains: String
+  day_starts_with: String
+  day_not_starts_with: String
+  day_ends_with: String
+  day_not_ends_with: String
+  day_i: String
+  day_not_i: String
+  day_contains_i: String
+  day_not_contains_i: String
+  day_starts_with_i: String
+  day_not_starts_with_i: String
+  day_ends_with_i: String
+  day_not_ends_with_i: String
+  day_in: [String]
+  day_not_in: [String]
   startTime: String
   startTime_not: String
   startTime_contains: String
@@ -281,6 +313,15 @@ input SportClassWhereInput {
   duration_not_ends_with_i: String
   duration_in: [String]
   duration_not_in: [String]
+
+  """ condition must be true for all nodes """
+  users_every: UserWhereInput
+
+  """ condition must be true for at least 1 node """
+  users_some: UserWhereInput
+
+  """ condition must be false for all nodes """
+  users_none: UserWhereInput
 }
 
 input SportClassWhereUniqueInput {
@@ -292,28 +333,34 @@ enum SortSportClassesBy {
   id_DESC
   name_ASC
   name_DESC
-  description_ASC
-  description_DESC
   freeSpots_ASC
   freeSpots_DESC
   status_ASC
   status_DESC
+  week_ASC
+  week_DESC
+  day_ASC
+  day_DESC
   startTime_ASC
   startTime_DESC
   teacher_ASC
   teacher_DESC
   duration_ASC
   duration_DESC
+  users_ASC
+  users_DESC
 }
 
 input SportClassUpdateInput {
   name: String
-  description: String
   freeSpots: Int
   status: String
+  week: Int
+  day: String
   startTime: String
   teacher: String
   duration: String
+  users: UserRelateToManyInput
 }
 
 input SportClassesUpdateInput {
@@ -323,16 +370,102 @@ input SportClassesUpdateInput {
 
 input SportClassCreateInput {
   name: String
-  description: String
   freeSpots: Int
   status: String
+  week: Int
+  day: String
   startTime: String
   teacher: String
   duration: String
+  users: UserRelateToManyInput
 }
 
 input SportClassesCreateInput {
   data: SportClassCreateInput
+}
+
+""" A keystone list """
+type Booking {
+  id: ID!
+  name: String
+  description: String
+}
+
+input BookingWhereInput {
+  AND: [BookingWhereInput]
+  OR: [BookingWhereInput]
+  id: ID
+  id_not: ID
+  id_in: [ID]
+  id_not_in: [ID]
+  name: String
+  name_not: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  name_i: String
+  name_not_i: String
+  name_contains_i: String
+  name_not_contains_i: String
+  name_starts_with_i: String
+  name_not_starts_with_i: String
+  name_ends_with_i: String
+  name_not_ends_with_i: String
+  name_in: [String]
+  name_not_in: [String]
+  description: String
+  description_not: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  description_i: String
+  description_not_i: String
+  description_contains_i: String
+  description_not_contains_i: String
+  description_starts_with_i: String
+  description_not_starts_with_i: String
+  description_ends_with_i: String
+  description_not_ends_with_i: String
+  description_in: [String]
+  description_not_in: [String]
+}
+
+input BookingWhereUniqueInput {
+  id: ID!
+}
+
+enum SortBookingsBy {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  description_ASC
+  description_DESC
+}
+
+input BookingUpdateInput {
+  name: String
+  description: String
+}
+
+input BookingsUpdateInput {
+  id: ID!
+  data: BookingUpdateInput
+}
+
+input BookingCreateInput {
+  name: String
+  description: String
+}
+
+input BookingsCreateInput {
+  data: BookingCreateInput
 }
 
 """
@@ -541,6 +674,19 @@ type Query {
   """ Retrieve the meta-data for the SportClass list. """
   _SportClassesMeta: _ListMeta
 
+  """ Search for all Booking items which match the where clause. """
+  allBookings(where: BookingWhereInput, search: String, sortBy: [SortBookingsBy!], orderBy: String, first: Int, skip: Int): [Booking]
+
+  """ Search for the Booking item with the matching ID. """
+  Booking(where: BookingWhereUniqueInput!): Booking
+
+  """ Perform a meta-query on all Booking items which match the where clause. 
+  """
+  _allBookingsMeta(where: BookingWhereInput, search: String, sortBy: [SortBookingsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+
+  """ Retrieve the meta-data for the Booking list. """
+  _BookingsMeta: _ListMeta
+
   """ Retrieve the meta-data for all lists. """
   _ksListsMeta(where: _ksListsMetaInput): [_ListMeta]
 
@@ -586,6 +732,24 @@ type Mutation {
 
   """ Delete multiple SportClass items by ID. """
   deleteSportClasses(ids: [ID!]): [SportClass]
+
+  """ Create a single Booking item. """
+  createBooking(data: BookingCreateInput): Booking
+
+  """ Create multiple Booking items. """
+  createBookings(data: [BookingsCreateInput]): [Booking]
+
+  """ Update a single Booking item by ID. """
+  updateBooking(id: ID!, data: BookingUpdateInput): Booking
+
+  """ Update multiple Booking items by ID. """
+  updateBookings(data: [BookingsUpdateInput]): [Booking]
+
+  """ Delete a single Booking item by ID. """
+  deleteBooking(id: ID!): Booking
+
+  """ Delete multiple Booking items by ID. """
+  deleteBookings(ids: [ID!]): [Booking]
   authenticateUserWithPassword(email: String!, password: String!): UserAuthenticationWithPasswordResult!
   createInitialUser(data: CreateInitialUserInput!): UserAuthenticationWithPasswordSuccess!
   endSession: Boolean!

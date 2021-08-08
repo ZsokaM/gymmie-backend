@@ -7,11 +7,6 @@ export const SportClass = list({
   // ui
   fields: {
     name: text({ isRequired: true }),
-    description: text({
-      ui: {
-        displayMode: 'textarea',
-      },
-    }),
     freeSpots: integer({
       defaultValue: 10,
     }),
@@ -25,6 +20,23 @@ export const SportClass = list({
         // to control what is shown when quickly adding a product
         createView: { fieldMode: 'hidden' },
       },
+    }),
+    week: integer({
+      isRequired: true,
+    }),
+    day: select({
+      dataType: 'enum',
+      options: [
+        { label: 'Monday', value: 'Monday' },
+        { label: 'Tuesday', value: 'Tuesday' },
+        { label: 'Wednesday', value: 'Wednesday' },
+        { label: 'Thursday', value: 'Thursday' },
+        { label: 'Friday', value: 'Friday' },
+        { label: 'Saturday', value: 'Saturday' },
+        { label: 'Sunday', value: 'Sunday' },
+      ],
+      isRequired: true,
+      ui: { displayMode: 'select' },
     }),
     startTime: select({
       dataType: 'enum',
@@ -67,6 +79,10 @@ export const SportClass = list({
       ],
       isRequired: true,
       ui: { displayMode: 'select' },
+    }),
+    users: relationship({
+      ref: 'User.classes',
+      many: true,
     }),
   },
 })

@@ -27,6 +27,9 @@ export default function Home() {
           SportClass: _allSportClassesMeta {
             count
           }
+          Booking: _allBookingsMeta {
+            count
+          }
         }
       `}
     />
