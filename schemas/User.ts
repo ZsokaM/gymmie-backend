@@ -10,6 +10,8 @@ export const User = list({
     email: text({ isRequired: true, isUnique: true }),
     password: password(),
     // roles, bookings to be added
-    //hello
+    classes: relationship({
+      ref: 'SportClass.users',
+    }),
   },
 })
