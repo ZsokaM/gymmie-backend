@@ -17,7 +17,7 @@ export const SportClass = list({
       defaultValue: 10,
     }),
     available: checkbox({
-      defaultValue: true,
+      defaultValue: false,
       isRequired: true,
     }),
     year: integer({
@@ -26,20 +26,8 @@ export const SportClass = list({
     week: integer({
       isRequired: true,
     }),
-    day: select({
-      dataType: 'enum',
-      //swap to numbers here and also in the table
-      options: [
-        { label: 'Monday', value: '0' },
-        { label: 'Tuesday', value: '1' },
-        { label: 'Wednesday', value: '2' },
-        { label: 'Thursday', value: '3' },
-        { label: 'Friday', value: '4' },
-        { label: 'Saturday', value: '5' },
-        { label: 'Sunday', value: '6' },
-      ],
+    day: integer({
       isRequired: true,
-      ui: { displayMode: 'select' },
     }),
     startTime: text({
       isRequired: true,
@@ -57,14 +45,8 @@ export const SportClass = list({
       isRequired: true,
       ui: { displayMode: 'select' },
     }),
-    duration: select({
-      dataType: 'enum',
-      options: [
-        { label: '45 min', value: '45' },
-        { label: '60 min', value: '60' },
-      ],
+    duration: integer({
       isRequired: true,
-      ui: { displayMode: 'select' },
     }),
     users: relationship({
       ref: 'User.classes',
