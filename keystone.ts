@@ -8,6 +8,7 @@ import {
 import { User } from './schemas/User'
 import { SportClass } from './schemas/SportClass'
 import { Booking } from './schemas/Booking'
+import { sendPasswordResetEmail } from './lib/mail'
 
 const databaseURL = process.env.DATABASE_URL
 
@@ -26,8 +27,7 @@ const { withAuth } = createAuth({
   },
   passwordResetLink: {
     async sendToken(args) {
-      //change!!!!!!!!
-      console.log(args)
+      await sendPasswordResetEmail(args.token, args.identity)
     },
   },
 })
