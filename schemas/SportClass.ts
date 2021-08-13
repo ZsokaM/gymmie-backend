@@ -16,8 +16,7 @@ export const SportClass = list({
     freeSpots: integer({
       defaultValue: 10,
     }),
-    available: checkbox({
-      defaultValue: false,
+    available: integer({
       isRequired: true,
     }),
     year: integer({
