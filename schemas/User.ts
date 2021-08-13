@@ -1,6 +1,6 @@
 import { list } from '@keystone-next/keystone/schema'
 import { text, password, relationship } from '@keystone-next/fields'
-import { Booking } from './Booking'
+import { SingleBooking } from './SingleBooking'
 
 export const User = list({
   // access:
@@ -12,6 +12,14 @@ export const User = list({
     // roles, bookings to be added
     classes: relationship({
       ref: 'SportClass.users',
+    }),
+    bookings: relationship({
+      ref: 'SingleBooking.user',
+      many: true,
+      ui: {
+        createView: { fieldMode: 'hidden' },
+        itemView: { fieldMode: 'read' },
+      },
     }),
   },
 })

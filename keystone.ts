@@ -7,8 +7,9 @@ import {
 } from '@keystone-next/keystone/session'
 import { User } from './schemas/User'
 import { SportClass } from './schemas/SportClass'
-import { Booking } from './schemas/Booking'
+import { SingleBooking } from './schemas/SingleBooking'
 import { sendPasswordResetEmail } from './lib/mail'
+import { extendGraphqlSchema } from './mutations'
 
 const databaseURL = process.env.DATABASE_URL
 
@@ -51,8 +52,9 @@ export default withAuth(
       // schema items to go here
       User,
       SportClass,
-      Booking,
+      SingleBooking,
     }),
+    extendGraphqlSchema: extendGraphqlSchema,
     ui: {
       // show the UI only for people who pass this test, needs to be changed for roles
       isAccessAllowed: ({ session }) => !!session && !!session.data,
