@@ -35,9 +35,7 @@ async function addToBookings(root, { sportClassId }, context) {
     },
     resolveFields: 'id, freeSpots',
   })
-
   const [bookedClass] = allClasses
-
   await context.lists.SportClass.updateOne({
     id: bookedClass.id,
     data: { freeSpots: bookedClass.freeSpots - 1 },
