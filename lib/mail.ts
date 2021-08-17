@@ -1,4 +1,4 @@
-import { createTransport } from 'nodemailer'
+import { createTransport, getTestMessageUrl } from 'nodemailer'
 //transport = allows us to hook up to a fake Simple Mail Transfer Protocol (SMTP) API and send emails
 const transporter = createTransport({
   host: process.env.MAIL_HOST,
@@ -35,4 +35,7 @@ export const sendPasswordResetEmail = async (resetToken, to) => {
         <a href="${process.env.FRONTEND_URL}/reset?token=${resetToken}">reset</a>
         `),
   })
+  if (process.env.MAIL_USER.includes('ethereal.email')) {
+    console.log(`💌 Message Sent!  Preview it at ${getTestMessageUrl(info)}`)
+  }
 }

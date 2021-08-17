@@ -1,11 +1,5 @@
 import { list } from '@keystone-next/keystone/schema'
-import {
-  text,
-  select,
-  integer,
-  checkbox,
-  relationship,
-} from '@keystone-next/fields'
+import { text, select, integer, relationship } from '@keystone-next/fields'
 import { User } from './User'
 
 export const SportClass = list({
