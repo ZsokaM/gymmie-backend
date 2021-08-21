@@ -1,9 +1,15 @@
 import { list } from '@keystone-next/keystone/schema'
-import { text, select, integer, relationship } from '@keystone-next/fields'
+import { relationship } from '@keystone-next/fields'
 import { User } from './User'
+import { isSignedIn, rules } from '../access'
 
 export const SingleBooking = list({
-  // access:
+  access: {
+    create: isSignedIn,
+    read: rules.canManageBookings,
+    update: () => false,
+    delete: rules.canManageBookings,
+  },
 
   fields: {
     sportClass: relationship({ ref: 'SportClass' }),
