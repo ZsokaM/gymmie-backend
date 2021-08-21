@@ -33,12 +33,15 @@ async function addToBookings(root, { sportClassId }, context) {
     where: {
       id: sportClassId,
     },
-    resolveFields: 'id, freeSpots',
+    resolveFields: 'id, freeSpots, users',
   })
   const [bookedClass] = allClasses
   await context.lists.SportClass.updateOne({
     id: bookedClass.id,
-    data: { freeSpots: bookedClass.freeSpots - 1 },
+    data: {
+      freeSpots: bookedClass.freeSpots - 1,
+      users: { connect: { id: currentSession.itemId } },
+    },
   })
 
   //4.2 if it isnt, create a new booking

@@ -12,6 +12,7 @@ export const User = list({
     // roles, bookings to be added
     classes: relationship({
       ref: 'SportClass.users',
+      many: true,
     }),
     bookings: relationship({
       ref: 'SingleBooking.user',
