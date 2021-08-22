@@ -1,10 +1,16 @@
 import { list } from '@keystone-next/keystone/schema'
 import { text, select, integer, relationship } from '@keystone-next/fields'
 import { User } from './User'
+import { isSignedIn, rules } from '../access'
 
 export const SportClass = list({
   // access:
-  // ui
+  access: {
+    create: rules.canManageSportClasses,
+    read: () => true,
+    update: rules.canManageSportClasses,
+    delete: rules.canManageSportClasses,
+  },
   fields: {
     name: text({ isRequired: true }),
     freeSpots: integer({

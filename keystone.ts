@@ -8,8 +8,10 @@ import {
 import { User } from './schemas/User'
 import { SportClass } from './schemas/SportClass'
 import { SingleBooking } from './schemas/SingleBooking'
+import { Role } from './schemas/Role'
 import { sendPasswordResetEmail } from './lib/mail'
 import { extendGraphqlSchema } from './mutations'
+import { permissionsList } from './schemas/fields'
 
 const databaseURL = process.env.DATABASE_URL
 
@@ -47,21 +49,18 @@ export default withAuth(
 
       //data seeding can be added here if needed
     },
-    // keystone refers to datatypes as lists
     lists: createSchema({
-      // schema items to go here
       User,
       SportClass,
       SingleBooking,
+      Role,
     }),
     extendGraphqlSchema: extendGraphqlSchema,
     ui: {
-      // show the UI only for people who pass this test, needs to be changed for roles
       isAccessAllowed: ({ session }) => !!session && !!session.data,
     },
     session: withItemData(statelessSessions(sessionConfig), {
-      //Graphql query
-      User: `id`,
+      User: `id role { ${permissionsList.join(' ')} }`,
     }),
   }),
 )
