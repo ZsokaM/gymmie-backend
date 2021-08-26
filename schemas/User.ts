@@ -18,10 +18,6 @@ export const User = list({
     name: text({ isRequired: true }),
     email: text({ isRequired: true, isUnique: true }),
     password: password(),
-    classes: relationship({
-      ref: 'SportClass.users',
-      many: true,
-    }),
     bookings: relationship({
       ref: 'SingleBooking.user',
       many: true,

@@ -12,7 +12,7 @@ export const SingleBooking = list({
   },
 
   fields: {
-    sportClass: relationship({ ref: 'SportClass' }),
+    sportClass: relationship({ ref: 'SportClass.bookings' }),
     user: relationship({ ref: 'User.bookings' }),
   },
 })

@@ -15,11 +15,6 @@ const generatedPermissions = Object.fromEntries(
 
 export const permissions = {
   ...generatedPermissions,
-
-  //     you can add extra custom permission as well
-  //   canDoWhatever({ session }: ListAccessArgs) {
-  //     return session?.data.role?.canDoWhatever
-  //   },
 }
 
 export const rules = {

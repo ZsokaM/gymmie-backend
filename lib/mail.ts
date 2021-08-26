@@ -1,5 +1,5 @@
 import { createTransport, getTestMessageUrl } from 'nodemailer'
-//transport = allows us to hook up to a fake Simple Mail Transfer Protocol (SMTP) API and send emails
+
 const transporter = createTransport({
   host: process.env.MAIL_HOST,
   port: process.env.MAIL_PORT,

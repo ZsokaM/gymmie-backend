@@ -4,11 +4,10 @@ import { User } from './User'
 import { isSignedIn, rules } from '../access'
 
 export const SportClass = list({
-  // access:
   access: {
     create: rules.canManageSportClasses,
     read: () => true,
-    update: rules.canManageSportClasses,
+    update: isSignedIn,
     delete: rules.canManageSportClasses,
   },
   fields: {
@@ -47,8 +46,8 @@ export const SportClass = list({
     duration: integer({
       isRequired: true,
     }),
-    users: relationship({
-      ref: 'User.classes',
+    bookings: relationship({
+      ref: 'SingleBooking.sportClass',
       many: true,
     }),
   },
