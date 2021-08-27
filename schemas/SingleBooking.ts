@@ -6,7 +6,7 @@ import { isSignedIn, rules } from '../access'
 export const SingleBooking = list({
   access: {
     create: isSignedIn,
-    read: rules.canManageBookings,
+    read: () => true,
     update: () => false,
     delete: rules.canManageBookings,
   },

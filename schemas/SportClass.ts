@@ -6,7 +6,7 @@ import { isSignedIn, rules } from '../access'
 export const SportClass = list({
   access: {
     create: rules.canManageSportClasses,
-    read: () => true,
+    read: true,
     update: isSignedIn,
     delete: rules.canManageSportClasses,
   },
