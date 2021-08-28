@@ -12,6 +12,7 @@ import { Role } from './schemas/Role'
 import { sendPasswordResetEmail } from './lib/mail'
 import { extendGraphqlSchema } from './mutations'
 import { permissionsList } from './schemas/fields'
+import { insertSeedData } from './seed-data'
 
 const databaseURL = process.env.DATABASE_URL
 
@@ -45,8 +46,12 @@ export default withAuth(
     db: {
       adapter: 'mongoose',
       url: databaseURL,
-
-      //data seeding can be added here if needed
+      async onConnect(keystone) {
+        console.log('Connected to the database!')
+        if (process.argv.includes('--seed-data')) {
+          await insertSeedData(keystone)
+        }
+      },
     },
     lists: createSchema({
       User,
