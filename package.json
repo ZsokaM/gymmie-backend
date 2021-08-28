@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "keystone-next",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "seed-data": "keystone-next --seed-data"
+    "seed-data": "keystone-next --seed-data",
+    "start": "keystone-next start",
+    "build": "keystone-next build"
   },
   "repository": {
     "type": "git",

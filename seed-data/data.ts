@@ -4,7 +4,7 @@ const teachers = [
   'Irene',
   'Sophie',
   'Mohamud',
-  'Gudio',
+  'Guido',
   'Zsoka',
 ]
 
