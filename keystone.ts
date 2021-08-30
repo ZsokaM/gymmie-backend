@@ -21,6 +21,7 @@ const sessionConfig = {
   secret: process.env.COOKIE_SECRET,
   sameSite: 'none',
   secure: true,
+  domain: 'gymmie',
 }
 
 const { withAuth } = createAuth({
