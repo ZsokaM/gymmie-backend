@@ -19,6 +19,8 @@ const databaseURL = process.env.DATABASE_URL
 const sessionConfig = {
   maxAge: 60 * 60 * 24 * 360,
   secret: process.env.COOKIE_SECRET,
+  sameSite: 'none',
+  secure: true,
 }
 
 const { withAuth } = createAuth({
