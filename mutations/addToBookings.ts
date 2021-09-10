@@ -1,13 +1,10 @@
-//@TO-ASK-MICHAEL: why am i getting parsing errors when i add typing
-// export default function addToBookings(
-//     root: any,
-//     {sportClassID} : {sportClassID: string},
-//     context: KeystoneContext,
-//   ): SingleBookingCreateInput {
-//     console.log('adding to booking')
-//   }
+import { KeystoneContext } from '@keystone-next/types'
 
-async function addToBookings(root, { sportClassId }, context) {
+async function addToBookings(
+  root: any,
+  { sportClassId },
+  context: KeystoneContext,
+) {
   const currentSession = context.session
   if (!currentSession.itemId) {
     throw new Error('You must be logged in to do this')
